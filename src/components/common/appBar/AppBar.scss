@@ -1,0 +1,13 @@
+.appbar{
+  &__container{
+    justify-content: space-around;
+  }
+
+  &__btn{
+    color: white;
+    border: 1px white solid;
+    padding: 0.5rem 1rem;
+    border-radius: 0.3rem;
+    text-decoration: none;
+  }
+}
