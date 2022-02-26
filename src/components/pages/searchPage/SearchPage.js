@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import ContainedButton from "../../common/buttons/ContainedButton";
 import InputSearch from "../../common/textField/InputSearch";
 import getRepos from "../../../functions/getRepositories";
@@ -16,32 +16,42 @@ function SearchPage({
   setStatus,
   setPageLocationHome,
 }) {
+  const [validationError, setValidationError] = useState(false);
+  const [validationErrorText, setValidationErrorText] = useState("");
   setPageLocationHome(true);
+
+  function handleSubmit() {
+    if (searchRepo.length < 3) {
+      setValidationError(true);
+      setValidationErrorText("Field requires a min 3 symbols");
+    } else {
+      setStatus(1);
+      setValidationError(false);
+      setValidationErrorText("");
+      getRepos(setRepositories, searchRepo, setStatus);
+    }
+  }
+
   return (
     <>
       <form
         className="search__form"
         onSubmit={(e) => {
           e.preventDefault();
-          if (searchRepo.length >= 3) {
-            setStatus(1);
-          }
-          getRepos(setRepositories, searchRepo, setStatus);
+          handleSubmit();
         }}
       >
         <InputSearch
           value={searchRepo}
           setValue={setSearchRepo}
           setStatus={setStatus}
+          validationError={validationError}
+          helperText={validationErrorText}
         />
         <ContainedButton
           text={"Search"}
           onclick={(e) => {
-            if (searchRepo.length >= 3) {
-              setStatus(1);
-            }
-
-            getRepos(setRepositories, searchRepo, setStatus);
+            handleSubmit();
           }}
         />
       </form>
