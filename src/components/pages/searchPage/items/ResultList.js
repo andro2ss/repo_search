@@ -4,10 +4,9 @@ import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Avatar from "@mui/material/Avatar";
 import ListItemText from "@mui/material/ListItemText";
 import List from "@mui/material/List";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function ResultList({ repositories, setRepository }) {
-  const navigate = useNavigate();
   return (
     <List
       className="search__list"
@@ -17,24 +16,24 @@ function ResultList({ repositories, setRepository }) {
       {repositories.length > 0 ? (
         repositories.map((item) => {
           return (
-            <ListItem
-              className="list__item"
-              key={item.id}
-              onClick={() => {
-                setRepository(item);
-                navigate(`/details`, { replace: true });
-              }}
-            >
-              <ListItemAvatar>
-                <Avatar>
-                  <img src={item.owner.avatar_url} alt="avatar" width={40} />
-                </Avatar>
-              </ListItemAvatar>
-              <ListItemText
-                primary={item.full_name}
-                secondary={item.description}
-              />
-            </ListItem>
+            <Link to="details" className="list__link" key={item.id}>
+              <ListItem
+                className="list__item"
+                onClick={() => {
+                  setRepository(item);
+                }}
+              >
+                <ListItemAvatar>
+                  <Avatar>
+                    <img src={item.owner.avatar_url} alt="avatar" width={40} />
+                  </Avatar>
+                </ListItemAvatar>
+                <ListItemText
+                  primary={item.full_name}
+                  secondary={item.description}
+                />
+              </ListItem>
+            </Link>
           );
         })
       ) : (
