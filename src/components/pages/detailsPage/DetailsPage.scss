@@ -1,0 +1,30 @@
+.detailsPage {
+
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+
+    .repository {
+      &__box {
+        display: flex;
+        justify-content: space-around;
+        flex-direction: row;
+        @media only screen and (max-width: 600px) {
+          flex-direction: column;
+        }
+      }
+
+      &__text {
+        width: 100%;
+
+        &--highlighted {
+          min-width: 140px;
+          text-align: left;
+          font-weight: 700;
+        }
+      }
+    }
+  }
+}
