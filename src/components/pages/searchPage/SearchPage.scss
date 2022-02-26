@@ -1,5 +1,5 @@
-.search{
-  &__form{
+.search {
+  &__form {
     display: flex;
     width: 100%;
     justify-content: center;
@@ -10,8 +10,12 @@
 
   }
 
-  &__list{
+  &__list {
     margin: 0 auto !important;
-    cursor: pointer;
+
   }
+}
+
+.list__item {
+  cursor: pointer
 }

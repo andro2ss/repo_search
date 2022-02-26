@@ -18,6 +18,7 @@ function ResultList({ repositories, setRepository }) {
         repositories.map((item) => {
           return (
             <ListItem
+              className="list__item"
               key={item.id}
               onClick={() => {
                 setRepository(item);
